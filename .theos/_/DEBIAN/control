@@ -2,9 +2,9 @@ Package: com.shepgoba.photoinfo
 Name: PhotoInfo
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
-Description: An awesome MobileSubstrate tweak!
+Description: Show photo resolution and disk usage in app
 Maintainer: shepgoba
 Author: shepgoba
 Section: Tweaks
-Version: 0.0.1
-Installed-Size: 152
+Version: 1.0
+Installed-Size: 104

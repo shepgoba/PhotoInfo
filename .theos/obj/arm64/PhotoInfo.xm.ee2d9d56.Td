@@ -1,5 +1,5 @@
-/Users/baapcgaming/Desktop/photoinfo/.theos/obj/debug/arm64e/Tweak.x.adf3a06f.o: \
-  /Users/baapcgaming/Desktop/photoinfo/.theos/obj/debug/arm64e/Tweak.x.m \
+/Users/baapcgaming/Desktop/photoinfo/.theos/obj/arm64/PhotoInfo.xm.ee2d9d56.o: \
+  /Users/baapcgaming/Desktop/photoinfo/.theos/obj/arm64/PhotoInfo.xm.mm \
   /Users/baapcgaming/theos/Prefix.pch \
   /Users/baapcgaming/theos/vendor/include/_Prefix/BackwardsCompat.h \
   /Users/baapcgaming/theos/vendor/include/_Prefix/IOSMacros.h \
