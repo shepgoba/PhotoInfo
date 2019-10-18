@@ -1,0 +1,10 @@
+Package: com.shepgoba.photoinfo
+Name: PhotoInfo
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: shepgoba
+Author: shepgoba
+Section: Tweaks
+Version: 0.0.1
+Installed-Size: 152
