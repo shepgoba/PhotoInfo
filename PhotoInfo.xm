@@ -11,20 +11,29 @@
 -(id)mainFileURL;
 @end
 
-@interface PXNavigationTitleView : UIView
-- (id) _viewControllerForAncestor;
+@interface PUPhotoBrowserTitleViewController : UIViewController
+-(void)_setNeedsUpdate;
 @end
 
-%hook PXNavigationTitleView
--(void)setTitle:(NSString *)arg1 {
-    PHAsset *asset = [(PUOneUpViewController *)[((PUNavigationController *)[self _viewControllerForAncestor]) _currentToolbarViewController] pu_debugCurrentAsset];
+%hook PUPhotoBrowserTitleViewController
+-(void)_setTimeDescription:(id)arg1 {
+    PHAsset *asset = [(PUOneUpViewController *)[(PUNavigationController *)[[self view] performSelector:@selector(_viewControllerForAncestor)] _currentToolbarViewController] pu_debugCurrentAsset];
     if (asset) {
         CGSize imageSize = [asset imageSize];
         NSString *correctURL = [[[asset mainFileURL] absoluteString] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:correctURL error:nil];
-        NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
-        long long fileSize = [fileSizeNumber longLongValue];
-        float fileSizeMB = (float)fileSize / (1024 * 1024);
+        NSDictionary *fileAttributes;
+        NSNumber *fileSizeNumber;
+        long long fileSize;
+        float fileSizeMB;
+        BOOL isDirectory;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:correctURL isDirectory:&isDirectory]) {
+            fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:correctURL error:nil];
+            fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
+            fileSize = [fileSizeNumber longLongValue];
+            fileSizeMB = (float)fileSize / (1024 * 1024);
+        } else {
+            fileSizeMB = 0;
+        }
 
         NSString *newTitle = [NSString stringWithFormat:@"%@ (%ix%i, %.02fMB)", arg1, (int)imageSize.width, (int)imageSize.height, fileSizeMB];
         %orig(newTitle);
